@@ -32,7 +32,8 @@ async def unwatch(ctx):
 async def selling(ctx, bellAmount, dodoCode: str):
     role = discord.utils.get(ctx.guild.roles, name="Stalnks")
     authorUser = ctx.message.author
-    await ctx.send(role.mention + ' ' + authorUser.mention + '\'s island is selling turnips for ' + str(bellAmount) + ' bells!' +
+    if(bellAmount and dodoCode):
+        await ctx.send(role.mention + ' ' + authorUser.mention + '\'s island is selling turnips for ' + str(bellAmount) + ' bells!' +
                     '\n Their Dodo Code is: ' + dodoCode)
 
 #stop mention (update previous message to say no longer selling)
