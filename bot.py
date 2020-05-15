@@ -7,7 +7,10 @@ client = commands.Bot(command_prefix = '.')
 async def on_ready():
     print('Hello World!')
 
-#Add to the mention list
+####### METHODS #######
+
+#Watch list
+#Adds users to the specified group for mentioning later
 @client.command(aliases=['bought'])
 async def watch(ctx):
     role = discord.utils.get(ctx.guild.roles, name="Stalnks")
@@ -15,7 +18,8 @@ async def watch(ctx):
     await user.add_roles(role)
     await ctx.send('Here\'s hoping for a nice surprise!')
 
-#Remove from the mention list
+#Unwatch
+#Removes users from the specified group
 @client.command(aliases=['sold'])
 async def unwatch(ctx):
     role = discord.utils.get(ctx.guild.roles, name="Stalnks")
