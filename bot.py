@@ -9,14 +9,19 @@ async def on_ready():
 
 ####### METHODS #######
 
+
 #Watch list
 #Adds users to the specified group for mentioning later
 @client.command(aliases=['bought'])
 async def watch(ctx):
     role = discord.utils.get(ctx.guild.roles, name="Stalnks")
     user = ctx.message.author
+    userMessage = ctx.message
+    botMessage = user.mention + ', here\'s hoping for a nice surprise!'
     await user.add_roles(role)
-    await ctx.send('Here\'s hoping for a nice surprise!')
+    botMessageEvent = await ctx.send(botMessage)
+    await userMessage.delete(delay=1)
+    await botMessageEvent.delete(delay=5)
 
 #Unwatch
 #Removes users from the specified group
@@ -24,28 +29,54 @@ async def watch(ctx):
 async def unwatch(ctx):
     role = discord.utils.get(ctx.guild.roles, name="Stalnks")
     user = ctx.message.author
+    userMessage = ctx.message
+    botMessage = user.mention + ', pleasure doin\' business with ya!'
     await user.remove_roles(role)
-    await ctx.send('Pleasure doin\' business with ya!')
+    botMessageEvent = await ctx.send(botMessage)
+    await userMessage.delete(delay=1)
+    await botMessagEvent.delete(delay=5)
 
-#mention traders
+#Selling
+#Mentions the role with the price and the dodo code for travelling
+#PARAMETERS:
+    # bellAmount: Price at Nook's Cranny on the island
+    # dodoCode: Dodo Code from the Airport for travelling
 @client.command()
 async def selling(ctx, bellAmount, dodoCode: str):
-    role = discord.utils.get(ctx.guild.roles, name="Stalnks")
     authorUser = ctx.message.author
+    mentionRole = discord.utils.get(ctx.guild.roles, name="Stalnks")
+    openRole = discord.utils.get(ctx.guild.roles, name="Open Town")
+    await authorUser.add_roles(openRole)
     if(bellAmount and dodoCode):
-        await ctx.send(role.mention + ' ' + authorUser.mention + '\'s island is selling turnips for ' + str(bellAmount) + ' bells!' +
+        await ctx.send(mentionRole.mention + ' ' + authorUser.mention + '\'s island is selling turnips for ' + str(bellAmount) + ' bells!' +
                     '\n Their Dodo Code is: ' + dodoCode)
 
-#stop mention (update previous message to say no longer selling)
+#Stop selling
+#Edits the previous message to say that the island is closed
 @client.command(aliases=['stop'])
-async def stopSelling(ctx):
+async def stop_selling(ctx):
+    channel = ctx.message.channel
     authorUser = ctx.message.author
-    role = discord.utils.get(ctx.guild.roles, name="Stalnks")
-    messageToEdit = discord.utils.get(client.messages, content= role.mention + ' ' + authorUser.mention)
+    openRole = discord.utils.get(ctx.guild.roles, name="Open Town")
+    #I have a feeling once a channel has a lot of messages this will become unwieldy
+    async for m_id in channel.history().filter(lambda m: authorUser in m.mentions).filter(lambda m: 'island is selling' in m.content).map(lambda m:m):
+        messageToEdit = m_id
+        await authorUser.remove_roles(openRole)
+        await messageToEdit.edit(content=authorUser.mention + ' has closed their town.')
+        await messageToEdit.delete(delay=3600)
+    #I have a feeling once a channel has a lot of messages this will become unwieldy
+    async for m_id in channel.history().filter(lambda m: m.author == authorUser).filter(lambda m: '.selling' in m.content).map(lambda m:m):
+        botSummonMessage = m_id
+        await botSummonMessage.delete(delay=3)
+    await ctx.message.delete(delay=3)
 
-#set fruit role
+#Set Fruit role
+#Set the role in the server based on your Fruit
+#PARAMETERS:
+    # Fruit: name of the fruit to get role
 @client.command()
 async def fruit(ctx, fruit: str):
+    fruit = fruit.lower()
     authorUser = ctx.message.author
     peachRole = discord.utils.get(ctx.guild.roles, name="just peachy")
     orangeRole = discord.utils.get(ctx.guild.roles, name="orange you glad")
