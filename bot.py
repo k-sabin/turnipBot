@@ -115,4 +115,4 @@ async def dmhelp(ctx):
     "\nAdd to Watchlist: **.bought**/**.watch**\n\nRemove from watchlist: **.sold**/**.unwatch**\n"+
     "\nAnnounce selling & being open: **.selling**\n\nClose town (use after .selling): **.stop**")
 
-client.run('NzEwOTA4MjA1NDgzNjg3OTU4.Xr7T6w.MrpU1Jr91UUU5tyYWId9SAgtZzw')
+client.run('')
