@@ -105,4 +105,14 @@ async def fruit(ctx, fruit: str):
             await authorUser.add_roles(pearRole)
             await ctx.send("You have set your fruit to Orange!")
 
+#Help
+@client.command()
+async def dmhelp(ctx):
+    await ctx.send("Why hullo there! I'm Daisy Mae!")
+    await ctx.send("Need some help?")
+
+    await ctx.send("```Prefix: '.'\nAdd Fruit: .fruit [cherry,orange,peach,apple,pear]" +
+    "\nAdd to Watchlist: .bought/.watch\nRemove from watchlist: .sold/.unwatch"+
+    "\nAnnounce selling & being open: .selling\nClose town (use after .selling): .stop```")
+
 client.run('NzEwOTA4MjA1NDgzNjg3OTU4.Xr7T6w.MrpU1Jr91UUU5tyYWId9SAgtZzw')
