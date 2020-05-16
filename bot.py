@@ -111,8 +111,8 @@ async def dmhelp(ctx):
     await ctx.send("Why hullo there! I'm Daisy Mae!")
     await ctx.send("Need some help?")
 
-    await ctx.send("```Prefix: '.'\nAdd Fruit: .fruit [cherry,orange,peach,apple,pear]" +
-    "\nAdd to Watchlist: .bought/.watch\nRemove from watchlist: .sold/.unwatch"+
-    "\nAnnounce selling & being open: .selling\nClose town (use after .selling): .stop```")
+    await ctx.send("Prefix: '.'\nAdd Fruit: **.fruit** [*cherry*,*orange*,*peach*,*apple*,*pear*]\n" +
+    "\nAdd to Watchlist: **.bought**/**.watch**\n\nRemove from watchlist: **.sold**/**.unwatch**\n"+
+    "\nAnnounce selling & being open: **.selling**\n\nClose town (use after .selling): **.stop**")
 
 client.run('NzEwOTA4MjA1NDgzNjg3OTU4.Xr7T6w.MrpU1Jr91UUU5tyYWId9SAgtZzw')
