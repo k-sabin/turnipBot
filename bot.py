@@ -113,13 +113,13 @@ async def fruit(ctx, fruit: str):
             await ctx.send("You have set your fruit to Orange!")
         elif(fruit == 'peach'):
             await authorUser.add_roles(peachRole)
-            await ctx.send("You have set your fruit to Orange!")
+            await ctx.send("You have set your fruit to Peach!")
         elif(fruit == 'apple'):
             await authorUser.add_roles(appleRole)
-            await ctx.send("You have set your fruit to Orange!")
+            await ctx.send("You have set your fruit to Apple!")
         elif(fruit == 'pear'):
             await authorUser.add_roles(pearRole)
-            await ctx.send("You have set your fruit to Orange!")
+            await ctx.send("You have set your fruit to Pear!")
 
 #Help
 @client.command()
