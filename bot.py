@@ -44,7 +44,7 @@ async def unwatch(ctx):
 @client.command()
 async def selling(ctx, bellAmount, dodoCode: str):
     authorUser = ctx.message.author
-    mentionRole = discord.utils.get(ctx.guild.roles, name="Stalnks")
+    mentionRole = discord.utils.get(ctx.guild.roles, name="WTB")
     openRole = discord.utils.get(ctx.guild.roles, name="Open Town")
     await authorUser.add_roles(openRole)
     if(bellAmount and dodoCode):
