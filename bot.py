@@ -117,6 +117,6 @@ async def dmhelp(ctx):
 
     await ctx.send("Prefix: '.'\nAdd Fruit: **.fruit** [*cherry*,*orange*,*peach*,*apple*,*pear*]\n" +
     "\nAdd to Watchlist: **.bought**/**.watch**\n\nRemove from watchlist: **.sold**/**.unwatch**\n"+
-    "\nAnnounce selling & being open: **.selling**\n\nClose town (use after .selling): **.stop**")
+    "\nAnnounce buying & being open: **.buying**\n\nClose town (use after .buying): **.stop**")
 
 client.run('')
