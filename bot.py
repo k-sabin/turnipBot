@@ -59,7 +59,7 @@ async def selling(ctx, bellAmount, dodoCode: str):
 
 @client.command()
 async def buying(ctx, bellAmount, dodoCode: str):
-    authorUser = ctx.message.authorUser
+    authorUser = ctx.message.author
     mentionRole = discord.utils.get(ctx.guild.roles, name="Stalnks")
     openRole = discord.utils.get(ctx.guild.roles, name="Open Town")
     await authorUser.add_roles(openRole)
