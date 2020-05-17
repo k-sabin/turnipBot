@@ -84,6 +84,10 @@ async def stop_selling(ctx):
     async for m_id in channel.history().filter(lambda m: m.author == authorUser).filter(lambda m: '.selling' in m.content).map(lambda m:m):
         botSummonMessage = m_id
         await botSummonMessage.delete(delay=3)
+    #I have a feeling once a channel has a lot of messages this will become unwieldy
+    async for m_id in channel.history().filter(lambda m: m.author == authorUser).filter(lambda m: '.buying' in m.content).map(lambda m:m):
+        botSummonMessage = m_id
+        await botSummonMessage.delete(delay=3)
     await ctx.message.delete(delay=3)
 
 #Set Fruit role
