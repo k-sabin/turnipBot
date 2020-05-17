@@ -51,6 +51,22 @@ async def selling(ctx, bellAmount, dodoCode: str):
         await ctx.send(mentionRole.mention + ' ' + authorUser.mention + '\'s island is selling turnips for ' + str(bellAmount) + ' bells!' +
                     '\n Their Dodo Code is: ' + dodoCode)
 
+#buying
+#Mentions the role with the price and the dodo code for travelling
+#PARAMETERS:
+    # bellAmount: Price at Nook's Cranny on the island
+    # dodoCode: Dodo Code from the Airport for travelling
+
+@client.command()
+async def buying(ctx, bellAmount, dodoCode: str):
+    authorUser = ctx.message.authorUser
+    mentionRole = discord.utils.get(ctx.guild.roles, name="Stalnks")
+    openRole = discord.utils.get(ctx.guild.roles, name="Open Town")
+    await authorUser.add_roles(openRole)
+    if(bellAmount and dodoCode):
+        await ctx.send(mentionRole.mention + ' ' + authorUser.mention + '\'s island is buying turnips for ' + str(bellAmount) + ' bells!' +
+                    '\n Their Dodo Code is: ' + dodoCode)
+
 #Stop selling
 #Edits the previous message to say that the island is closed
 @client.command(aliases=['stop'])
