@@ -9,7 +9,6 @@ async def on_ready():
 
 ####### METHODS #######
 
-
 #Watch list
 #Adds users to the specified group for mentioning later
 @client.command(aliases=['bought'])
@@ -35,21 +34,6 @@ async def unwatch(ctx):
     botMessageEvent = await ctx.send(botMessage)
     await userMessage.delete(delay=1)
     await botMessagEvent.delete(delay=5)
-
-#Selling
-#Mentions the role with the price and the dodo code for travelling
-#PARAMETERS:
-    # bellAmount: Price at Nook's Cranny on the island
-    # dodoCode: Dodo Code from the Airport for travelling
-@client.command()
-async def selling(ctx, bellAmount, dodoCode: str):
-    authorUser = ctx.message.author
-    mentionRole = discord.utils.get(ctx.guild.roles, name="WTB")
-    openRole = discord.utils.get(ctx.guild.roles, name="Open Town")
-    await authorUser.add_roles(openRole)
-    if(bellAmount and dodoCode):
-        await ctx.send(mentionRole.mention + ' ' + authorUser.mention + '\'s island is selling turnips for ' + str(bellAmount) + ' bells!' +
-                    '\n Their Dodo Code is: ' + dodoCode)
 
 #buying
 #Mentions the role with the price and the dodo code for travelling
