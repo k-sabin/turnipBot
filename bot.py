@@ -75,7 +75,7 @@ async def stop_selling(ctx):
     authorUser = ctx.message.author
     openRole = discord.utils.get(ctx.guild.roles, name="Open Town")
     #I have a feeling once a channel has a lot of messages this will become unwieldy
-    async for m_id in channel.history().filter(lambda m: authorUser in m.mentions).filter(lambda m: 'island is selling' in m.content).map(lambda m:m):
+    async for m_id in channel.history().filter(lambda m: authorUser in m.mentions).filter(lambda m: 'island is' in m.content).map(lambda m:m):
         messageToEdit = m_id
         await authorUser.remove_roles(openRole)
         await messageToEdit.edit(content=authorUser.mention + ' has closed their town.')
